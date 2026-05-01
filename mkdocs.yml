@@ -1,0 +1,136 @@
+site_name: Agentforce Field Guide
+site_description: Practical handbook for building agents on Salesforce Agentforce
+site_url: https://ialameh.github.io/agentforce-field-guide/
+repo_url: https://github.com/ialameh/agentforce-field-guide
+repo_name: ialameh/agentforce-field-guide
+edit_uri: edit/main/
+
+docs_dir: .
+site_dir: site
+exclude_docs: |
+  LICENSE
+  .github/
+  .git/
+  site/
+  node_modules/
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+
+nav:
+  - Home: README.md
+  - Quickstart: 00-quickstart.md
+  - Foundations:
+    - The Mental Model: 01-mental-model.md
+    - Starting Checklist: 02-starting-checklist.md
+    - Naming and Namespaces: 03-naming-and-namespaces.md
+    - Development Loop: 04-development-loop.md
+  - Operations:
+    - Troubleshooting: 05-troubleshooting.md
+    - Release and Activation: 06-release-and-activation.md
+    - Anti-Patterns: 07-anti-patterns.md
+    - Glossary: 08-glossary.md
+  - Design and Engineering:
+    - Security: 09-security.md
+    - Testing: 10-testing.md
+    - Observability: 11-observability.md
+    - Decision Matrix: 12-decision-matrix.md
+    - Performance and Limits: 13-performance-and-limits.md
+    - Conversation Design: 14-conversation-design.md
+    - Designing Agents and Subagents: 19-designing-agents-and-subagents.md
+    - Prompt Engineering: 20-prompt-engineering.md
+  - Reference and Migration:
+    - FAQ: 15-faq.md
+    - Migration Guides: 16-migration-guides.md
+    - Cost Optimization: 17-cost-optimization.md
+    - CI/CD Recipes: 18-cicd-recipes.md
+  - Worked Material:
+    - Cookbook: cookbook/README.md
+    - Templates: templates/README.md
+    - Case Studies: case-studies/README.md
+    - 'Case 01: Action Name Not Found': case-studies/01-action-name-not-found.md
+  - Project:
+    - References: REFERENCES.md
+    - Verification: VERIFICATION.md
+    - Contributing: CONTRIBUTING.md
+    - Code of Conduct: CODE_OF_CONDUCT.md
+    - Changelog: CHANGELOG.md
+
+plugins:
+  - search:
+      lang: en
+  - tags
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ialameh/agentforce-field-guide
+  generator: false
+
+copyright: >
+  Released under <a href="LICENSE">CC BY 4.0</a>. Salesforce, Agentforce, Einstein, and related marks are trademarks of Salesforce, Inc.
