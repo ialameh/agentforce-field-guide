@@ -1,0 +1,21 @@
+{
+  "unevaluatedProperties": false,
+  "properties": {
+    "status": {
+      "title": "Status",
+      "description": "Current status of the order, e.g. Pending, Shipped, Delivered.",
+      "lightning:type": "lightning__textType"
+    },
+    "expected_ship_date": {
+      "title": "Expected Ship Date",
+      "description": "ISO 8601 date when the order is expected to ship. Empty if already shipped or unknown.",
+      "lightning:type": "lightning__textType"
+    },
+    "tracking_url": {
+      "title": "Tracking URL",
+      "description": "Carrier tracking URL. Empty if not yet shipped.",
+      "lightning:type": "lightning__textType"
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

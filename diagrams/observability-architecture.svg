@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arr-ob" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="ds-ob" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="600" fill="#ffffff"/>
+
+  <text x="500" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Observability Architecture</text>
+  <text x="500" y="56" font-size="13" text-anchor="middle" fill="#64748b">Four signals you should plan for before the agent ships. Pick at least two to cover for a stable launch.</text>
+
+  <!-- Source: Agent runtime -->
+  <g filter="url(#ds-ob)">
+    <rect x="40" y="100" width="240" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  </g>
+  <text x="160" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#78350f">Agent runtime</text>
+  <text x="160" y="150" font-size="11" text-anchor="middle" fill="#92400e">Action invocations</text>
+  <text x="160" y="166" font-size="11" text-anchor="middle" fill="#92400e">Conversation turns</text>
+
+  <!-- Source: Apex action -->
+  <g filter="url(#ds-ob)">
+    <rect x="40" y="200" width="240" height="80" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  </g>
+  <text x="160" y="230" font-size="14" font-weight="700" text-anchor="middle" fill="#14532d">Apex / flow logic</text>
+  <text x="160" y="250" font-size="11" text-anchor="middle" fill="#166534">Logs from your code</text>
+  <text x="160" y="266" font-size="11" text-anchor="middle" fill="#166534">Custom signals</text>
+
+  <!-- Source: External -->
+  <g filter="url(#ds-ob)">
+    <rect x="40" y="300" width="240" height="80" rx="10" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+  <text x="160" y="330" font-size="14" font-weight="700" text-anchor="middle" fill="#172554">External callouts</text>
+  <text x="160" y="350" font-size="11" text-anchor="middle" fill="#1e40af">Latency, status codes</text>
+  <text x="160" y="366" font-size="11" text-anchor="middle" fill="#1e40af">Quota usage</text>
+
+  <!-- Sink 1: Platform Events -->
+  <g filter="url(#ds-ob)">
+    <rect x="380" y="80" width="240" height="80" rx="10" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+  </g>
+  <text x="500" y="110" font-size="14" font-weight="700" text-anchor="middle" fill="#831843">Platform Events</text>
+  <text x="500" y="130" font-size="11" text-anchor="middle" fill="#9d174d">Recommended primary sink</text>
+  <text x="500" y="146" font-size="11" text-anchor="middle" fill="#9d174d">Append-only, queryable</text>
+
+  <!-- Sink 2: Custom log object -->
+  <g filter="url(#ds-ob)">
+    <rect x="380" y="180" width="240" height="80" rx="10" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+  </g>
+  <text x="500" y="210" font-size="14" font-weight="700" text-anchor="middle" fill="#3b0764">Custom Log__c sObject</text>
+  <text x="500" y="230" font-size="11" text-anchor="middle" fill="#5b21b6">Structured fields, reportable</text>
+  <text x="500" y="246" font-size="11" text-anchor="middle" fill="#5b21b6">Tied to Salesforce reports</text>
+
+  <!-- Sink 3: Debug logs -->
+  <g filter="url(#ds-ob)">
+    <rect x="380" y="280" width="240" height="80" rx="10" fill="#cffafe" stroke="#0e7490" stroke-width="2"/>
+  </g>
+  <text x="500" y="310" font-size="14" font-weight="700" text-anchor="middle" fill="#164e63">Apex debug logs</text>
+  <text x="500" y="330" font-size="11" text-anchor="middle" fill="#155e75">Salesforce native</text>
+  <text x="500" y="346" font-size="11" text-anchor="middle" fill="#155e75">Short retention, dev only</text>
+
+  <!-- Sink 4: External APM -->
+  <g filter="url(#ds-ob)">
+    <rect x="380" y="380" width="240" height="80" rx="10" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  </g>
+  <text x="500" y="410" font-size="14" font-weight="700" text-anchor="middle" fill="#7c2d12">External APM</text>
+  <text x="500" y="430" font-size="11" text-anchor="middle" fill="#9a3412">Datadog, Splunk, New Relic</text>
+  <text x="500" y="446" font-size="11" text-anchor="middle" fill="#9a3412">Push from Apex via callout</text>
+
+  <!-- Consumer: Dashboards -->
+  <g filter="url(#ds-ob)">
+    <rect x="720" y="80" width="240" height="80" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="840" y="110" font-size="14" font-weight="700" text-anchor="middle" fill="#fff">Dashboards</text>
+  <text x="840" y="130" font-size="11" text-anchor="middle" fill="#cbd5e1">Salesforce reports</text>
+  <text x="840" y="146" font-size="11" text-anchor="middle" fill="#cbd5e1">External BI</text>
+
+  <!-- Consumer: Alerts -->
+  <g filter="url(#ds-ob)">
+    <rect x="720" y="180" width="240" height="80" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="840" y="210" font-size="14" font-weight="700" text-anchor="middle" fill="#fff">Alerts</text>
+  <text x="840" y="230" font-size="11" text-anchor="middle" fill="#cbd5e1">Action failure rate</text>
+  <text x="840" y="246" font-size="11" text-anchor="middle" fill="#cbd5e1">Latency P95</text>
+
+  <!-- Consumer: Audit -->
+  <g filter="url(#ds-ob)">
+    <rect x="720" y="280" width="240" height="80" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="840" y="310" font-size="14" font-weight="700" text-anchor="middle" fill="#fff">Audit / compliance</text>
+  <text x="840" y="330" font-size="11" text-anchor="middle" fill="#cbd5e1">Conversation history</text>
+  <text x="840" y="346" font-size="11" text-anchor="middle" fill="#cbd5e1">Action provenance</text>
+
+  <!-- Arrows -->
+  <line x1="280" y1="140" x2="380" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="280" y1="140" x2="380" y2="220" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="280" y1="240" x2="380" y2="220" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="280" y1="240" x2="380" y2="320" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="280" y1="340" x2="380" y2="420" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+
+  <line x1="620" y1="120" x2="720" y2="120" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="620" y1="220" x2="720" y2="220" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="620" y1="220" x2="720" y2="320" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+  <line x1="620" y1="420" x2="720" y2="220" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-ob)"/>
+
+  <!-- Bottom rule -->
+  <g filter="url(#ds-ob)">
+    <rect x="40" y="490" width="920" height="90" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <text x="60" y="514" font-size="13" font-weight="700" fill="#0f172a">Sensible default</text>
+  <text x="60" y="535" font-size="12" fill="#334155">For most teams: Platform Events as the canonical sink, Custom Log__c for reports admins want, debug logs in dev only.</text>
+  <text x="60" y="554" font-size="12" fill="#334155">Wire alerts on action failure rate per agent. Wire latency P95 per action. Wire conversation count per topic.</text>
+  <text x="60" y="572" font-size="11" font-style="italic" fill="#64748b">Set this up before launch. Adding observability after a production incident is much harder than wiring it before.</text>
+</svg>

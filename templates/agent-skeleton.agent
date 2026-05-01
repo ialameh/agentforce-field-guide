@@ -1,0 +1,80 @@
+system:
+    instructions: "You are <AgentDescription>. Help the user with <PrimaryPurpose>."
+    messages:
+        welcome: "<WelcomeMessage>"
+        error: "Sorry, something went wrong."
+
+config:
+    developer_name: "<AgentName>"
+    default_agent_user: "<agent.user@example.com>"
+    agent_label: "<Agent Display Name>"
+    description: "<One-line description of what the agent does>"
+
+language:
+    default_locale: "en_US"
+    additional_locales: ""
+    all_additional_locales: False
+
+variables:
+    isAuthenticated: mutable boolean = false
+        description: "Whether the user has been authenticated"
+        label: "isAuthenticated"
+    EndUserId: linked string
+        source: @MessagingSession.MessagingEndUserId
+        description: "The end user's id from the messaging session"
+    lastError: mutable string
+        description: "The last error message, if any"
+        label: "lastError"
+
+knowledge:
+    rag_feature_config_id: ""
+    citations_url: ""
+    citations_enabled: False
+
+start_agent agent_router:
+    label: "Router"
+    description: "Welcome the user and route them to the right topic"
+    reasoning:
+        instructions: ->
+            |Greet the user. Identify their intent based on what they say.
+            |If they ask about <Intent1>, transition to @subagent.<topic1_subagent>.
+            |If they ask about <Intent2>, transition to @subagent.<topic2_subagent>.
+            |If unclear, ask a clarifying question.
+        actions:
+            go_to_<topic1>: @utils.transition to @subagent.<topic1_subagent>
+            go_to_<topic2>: @utils.transition to @subagent.<topic2_subagent>
+
+subagent <topic1_subagent>:
+    label: "<Topic 1 Label>"
+    description: "<Handles topic 1>"
+    reasoning:
+        instructions: ->
+            |Handle <topic1> requests. Gather <input1> from the user.
+            |Run @actions.<ActionName> with the gathered input.
+            |Reply with the result in plain text under 80 words.
+        actions:
+            <ActionName>: @actions.<ActionName>
+                with <input1> = ...
+
+    actions:
+        <ActionName>:
+            label: "<Action Display Name>"
+            description: "<What this action does in one sentence>"
+            target: "apex://<ns>__<ClassName>"
+            inputs:
+                <input1>: string
+                    label: "<Input Label>"
+                    description: "<What this input means>"
+                    is_required: True
+                    complex_data_type_name: "lightning__textType"
+                    is_user_input: True
+                    filter_from_agent: False
+                    is_displayable: False
+            outputs:
+                <output1>: string
+                    label: "<Output Label>"
+                    description: "<What this output means>"
+                    complex_data_type_name: "lightning__textType"
+                    developer_name: "<output1>"
+                    is_displayable: True
+                    filter_from_agent: False

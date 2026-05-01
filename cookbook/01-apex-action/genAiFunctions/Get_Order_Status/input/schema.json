@@ -1,0 +1,14 @@
+{
+  "required": ["order_id"],
+  "unevaluatedProperties": false,
+  "properties": {
+    "order_id": {
+      "title": "Order ID",
+      "description": "The order id, in format ORD-XXXX where XXXX is digits.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": true
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

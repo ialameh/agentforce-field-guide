@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 720" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arrow-rs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="soft-shadow-rs" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="920" height="720" fill="#ffffff"/>
+
+  <text x="460" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Runtime Call Sequence</text>
+  <text x="460" y="56" font-size="13" text-anchor="middle" fill="#64748b">What happens, in order, when an agent invokes a custom Apex action.</text>
+
+  <!-- Step boxes -->
+  <g>
+    <!-- Step 1 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="90" width="800" height="60" rx="8" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="120" r="20" fill="#be185d"/>
+    <text x="100" y="127" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+    <text x="140" y="115" font-size="14" font-weight="700" fill="#831843">LLM planner picks an action</text>
+    <text x="140" y="135" font-size="12" fill="#9d174d">From the set linked into the topic the agent is currently in.</text>
+
+    <line x1="460" y1="150" x2="460" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 2 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="172" width="800" height="60" rx="8" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="202" r="20" fill="#6d28d9"/>
+    <text x="100" y="209" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+    <text x="140" y="197" font-size="14" font-weight="700" fill="#3b0764">Resolves DeveloperName against activated version</text>
+    <text x="140" y="217" font-size="12" fill="#5b21b6">Only the snapshot from the last Activate is consulted.</text>
+
+    <line x1="460" y1="232" x2="460" y2="252" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 3 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="254" width="800" height="60" rx="8" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="284" r="20" fill="#1d4ed8"/>
+    <text x="100" y="291" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+    <text x="140" y="279" font-size="14" font-weight="700" fill="#172554">Reads GenAiFunction record</text>
+    <text x="140" y="299" font-size="12" fill="#1e40af">Looks at invocationTargetType and invocationTarget. Knows what to run.</text>
+
+    <line x1="460" y1="314" x2="460" y2="334" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 4 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="336" width="800" height="60" rx="8" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="366" r="20" fill="#15803d"/>
+    <text x="100" y="373" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+    <text x="140" y="361" font-size="14" font-weight="700" fill="#14532d">Looks up Apex class on the org</text>
+    <text x="140" y="381" font-size="12" fill="#166534">Prepares a synchronous transaction for the invocable runner.</text>
+
+    <line x1="460" y1="396" x2="460" y2="416" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 5 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="418" width="800" height="60" rx="8" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="448" r="20" fill="#b45309"/>
+    <text x="100" y="455" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+    <text x="140" y="443" font-size="14" font-weight="700" fill="#451a03">Permission check as the agent user</text>
+    <text x="140" y="463" font-size="12" fill="#92400e">Class access plus FLS / CRUD on touched records.</text>
+
+    <line x1="460" y1="478" x2="460" y2="498" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 6 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="500" width="800" height="60" rx="8" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="530" r="20" fill="#ea580c"/>
+    <text x="100" y="537" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+    <text x="140" y="525" font-size="14" font-weight="700" fill="#7c2d12">Invokes the class via the invocable runner</text>
+    <text x="140" y="545" font-size="12" fill="#9a3412">Inputs already conformed to the GenAiFunction input schema.</text>
+
+    <line x1="460" y1="560" x2="460" y2="580" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 7 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="582" width="800" height="60" rx="8" fill="#cffafe" stroke="#0e7490" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="612" r="20" fill="#0e7490"/>
+    <text x="100" y="619" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">7</text>
+    <text x="140" y="607" font-size="14" font-weight="700" fill="#164e63">Outputs conformed and mapped to variables</text>
+    <text x="140" y="627" font-size="12" fill="#155e75">Topic's reasoning configuration determines the mapping.</text>
+
+    <line x1="460" y1="642" x2="460" y2="662" stroke="#475569" stroke-width="2" marker-end="url(#arrow-rs)"/>
+
+    <!-- Step 8 -->
+    <g filter="url(#soft-shadow-rs)">
+      <rect x="60" y="664" width="800" height="46" rx="8" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+    </g>
+    <circle cx="100" cy="687" r="20" fill="#fff"/>
+    <text x="100" y="694" font-size="16" font-weight="700" text-anchor="middle" fill="#0f172a">8</text>
+    <text x="140" y="694" font-size="14" font-weight="700" fill="#fff">Agent continues the conversation with the new state.</text>
+  </g>
+</svg>

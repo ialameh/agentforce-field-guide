@@ -1,0 +1,18 @@
+{
+  "orgName": "Agentforce dev scratch",
+  "edition": "Developer",
+  "features": [
+    "EinsteinGPT",
+    "EinsteinCopilot",
+    "AgentforceForServiceCloud"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  },
+  "release": "preview"
+}

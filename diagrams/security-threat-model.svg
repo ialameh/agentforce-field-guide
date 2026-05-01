@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arr-st" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="ds-st" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="700" fill="#ffffff"/>
+
+  <text x="500" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Threat Model for an Agentforce Action</text>
+  <text x="500" y="56" font-size="13" text-anchor="middle" fill="#64748b">Where attacks can enter, what defences sit at each boundary, who is responsible.</text>
+
+  <!-- User -->
+  <g filter="url(#ds-st)">
+    <rect x="40" y="100" width="180" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  </g>
+  <text x="130" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#7f1d1d">End user</text>
+  <text x="130" y="150" font-size="11" text-anchor="middle" fill="#991b1b">Untrusted input source</text>
+  <text x="130" y="166" font-size="11" text-anchor="middle" fill="#991b1b">May try prompt injection</text>
+
+  <!-- Boundary 1 -->
+  <line x1="220" y1="140" x2="270" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arr-st)"/>
+  <text x="245" y="125" font-size="9" text-anchor="middle" fill="#dc2626">user msg</text>
+
+  <!-- Agent (LLM) -->
+  <g filter="url(#ds-st)">
+    <rect x="270" y="100" width="200" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  </g>
+  <text x="370" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#78350f">LLM planner</text>
+  <text x="370" y="150" font-size="11" text-anchor="middle" fill="#92400e">May hallucinate inputs</text>
+  <text x="370" y="166" font-size="11" text-anchor="middle" fill="#92400e">May choose wrong action</text>
+
+  <!-- Boundary 2 -->
+  <line x1="470" y1="140" x2="520" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arr-st)"/>
+  <text x="495" y="125" font-size="9" text-anchor="middle" fill="#dc2626">action call</text>
+
+  <!-- Agent action -->
+  <g filter="url(#ds-st)">
+    <rect x="520" y="100" width="200" height="80" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  </g>
+  <text x="620" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#14532d">Agent action</text>
+  <text x="620" y="150" font-size="11" text-anchor="middle" fill="#166534">Apex / flow / prompt</text>
+  <text x="620" y="166" font-size="11" text-anchor="middle" fill="#15803d">Trust boundary HERE</text>
+
+  <!-- Boundary 3 -->
+  <line x1="720" y1="140" x2="770" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arr-st)"/>
+  <text x="745" y="125" font-size="9" text-anchor="middle" fill="#dc2626">db op</text>
+
+  <!-- Salesforce data -->
+  <g filter="url(#ds-st)">
+    <rect x="770" y="100" width="190" height="80" rx="10" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+  <text x="865" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#172554">Salesforce data</text>
+  <text x="865" y="150" font-size="11" text-anchor="middle" fill="#1e40af">Records, files, fields</text>
+  <text x="865" y="166" font-size="11" text-anchor="middle" fill="#1e40af">Sharing rules + FLS</text>
+
+  <!-- Threats -->
+  <text x="500" y="220" font-size="16" font-weight="700" text-anchor="middle" fill="#0f172a">Top threats and where they enter</text>
+
+  <g font-size="12">
+    <!-- Threat 1 -->
+    <g filter="url(#ds-st)">
+      <rect x="40" y="240" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="60" y="265" font-size="13" font-weight="700" fill="#7f1d1d">1. Prompt injection</text>
+    <text x="60" y="284" fill="#991b1b">User crafts message that overrides agent</text>
+    <text x="60" y="301" fill="#991b1b">instructions or tricks LLM into mis-using</text>
+    <text x="60" y="318" fill="#991b1b">an action.</text>
+    <text x="60" y="345" font-weight="600" fill="#7f1d1d">Defence: validate inputs in Apex,</text>
+    <text x="60" y="358" font-weight="600" fill="#7f1d1d">limit topic actions to least privilege.</text>
+
+    <!-- Threat 2 -->
+    <g filter="url(#ds-st)">
+      <rect x="350" y="240" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="370" y="265" font-size="13" font-weight="700" fill="#7f1d1d">2. Data exfiltration via output</text>
+    <text x="370" y="284" fill="#991b1b">Action returns sensitive fields the LLM</text>
+    <text x="370" y="301" fill="#991b1b">may then leak to user verbatim or via</text>
+    <text x="370" y="318" fill="#991b1b">side channels.</text>
+    <text x="370" y="345" font-weight="600" fill="#7f1d1d">Defence: tag PII in output schema,</text>
+    <text x="370" y="358" font-weight="600" fill="#7f1d1d">filter_from_agent for secrets.</text>
+
+    <!-- Threat 3 -->
+    <g filter="url(#ds-st)">
+      <rect x="660" y="240" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="680" y="265" font-size="13" font-weight="700" fill="#7f1d1d">3. Excessive agent privileges</text>
+    <text x="680" y="284" fill="#991b1b">Agent user has wider access than the</text>
+    <text x="680" y="301" fill="#991b1b">conversation should expose. LLM picks</text>
+    <text x="680" y="318" fill="#991b1b">an action that uses them.</text>
+    <text x="680" y="345" font-weight="600" fill="#7f1d1d">Defence: scoped permission set</text>
+    <text x="680" y="358" font-weight="600" fill="#7f1d1d">per agent. Profile lock-down.</text>
+
+    <!-- Threat 4 -->
+    <g filter="url(#ds-st)">
+      <rect x="40" y="380" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="60" y="405" font-size="13" font-weight="700" fill="#7f1d1d">4. Confused-deputy on records</text>
+    <text x="60" y="424" fill="#991b1b">Agent acts on a record from a different</text>
+    <text x="60" y="441" fill="#991b1b">tenant or user than the conversation</text>
+    <text x="60" y="458" fill="#991b1b">authorises.</text>
+    <text x="60" y="485" font-weight="600" fill="#7f1d1d">Defence: authorise the recordId in</text>
+    <text x="60" y="498" font-weight="600" fill="#7f1d1d">Apex before any read or write.</text>
+
+    <!-- Threat 5 -->
+    <g filter="url(#ds-st)">
+      <rect x="350" y="380" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="370" y="405" font-size="13" font-weight="700" fill="#7f1d1d">5. Destructive action retry</text>
+    <text x="370" y="424" fill="#991b1b">LLM retries a non-idempotent action;</text>
+    <text x="370" y="441" fill="#991b1b">email sent twice, payment charged</text>
+    <text x="370" y="458" fill="#991b1b">twice.</text>
+    <text x="370" y="485" font-weight="600" fill="#7f1d1d">Defence: idempotency keys, or</text>
+    <text x="370" y="498" font-weight="600" fill="#7f1d1d">isConfirmationRequired = true.</text>
+
+    <!-- Threat 6 -->
+    <g filter="url(#ds-st)">
+      <rect x="660" y="380" width="300" height="120" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="680" y="405" font-size="13" font-weight="700" fill="#7f1d1d">6. Conversation log leakage</text>
+    <text x="680" y="424" fill="#991b1b">Logs of agent interactions reveal</text>
+    <text x="680" y="441" fill="#991b1b">PII or secrets to support staff or</text>
+    <text x="680" y="458" fill="#991b1b">DevOps.</text>
+    <text x="680" y="485" font-weight="600" fill="#7f1d1d">Defence: redact at log boundary,</text>
+    <text x="680" y="498" font-weight="600" fill="#7f1d1d">scope log access.</text>
+  </g>
+
+  <!-- Bottom rule -->
+  <g filter="url(#ds-st)">
+    <rect x="40" y="540" width="920" height="120" rx="10" fill="#0f172a" stroke="#0f172a"/>
+  </g>
+  <text x="60" y="565" font-size="14" font-weight="700" fill="#ffffff">Defence-in-depth checklist</text>
+  <text x="60" y="588" font-size="12" fill="#cbd5e1">Validate every input in Apex even if the schema "guarantees" it. The LLM can pass anything.</text>
+  <text x="60" y="606" font-size="12" fill="#cbd5e1">Mark PII in input/output schemas. Use filter_from_agent for fields the LLM should not see.</text>
+  <text x="60" y="624" font-size="12" fill="#cbd5e1">Run the agent as a scoped user with only the access this agent needs. Not as a generic system user.</text>
+  <text x="60" y="642" font-size="12" fill="#cbd5e1">Make destructive actions idempotent or require confirmation. Treat the LLM as a retrier.</text>
+</svg>

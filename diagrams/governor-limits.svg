@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <filter id="ds-gl" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="600" fill="#ffffff"/>
+
+  <text x="500" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Performance and Limits</text>
+  <text x="500" y="56" font-size="13" text-anchor="middle" fill="#64748b">What constrains a custom action at runtime, and the budgets you should design against.</text>
+
+  <!-- Budget bars -->
+  <g font-size="12">
+    <text x="40" y="100" font-size="14" font-weight="700" fill="#0f172a">Per-action time budget</text>
+    <rect x="40" y="115" width="700" height="36" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <rect x="40" y="115" width="280" height="36" rx="6" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+    <rect x="320" y="115" width="280" height="36" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <rect x="600" y="115" width="140" height="36" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="180" y="139" text-anchor="middle" font-weight="700" fill="#14532d">0 to 2s: ideal</text>
+    <text x="460" y="139" text-anchor="middle" font-weight="700" fill="#78350f">2 to 5s: tolerable</text>
+    <text x="670" y="139" text-anchor="middle" font-weight="700" fill="#7f1d1d">5s+: risk</text>
+    <text x="40" y="170" font-size="11" font-style="italic" fill="#64748b">Past ~5s the runtime may time out. Push long work into a queueable and return immediately.</text>
+
+    <text x="40" y="210" font-size="14" font-weight="700" fill="#0f172a">Apex callouts per transaction</text>
+    <rect x="40" y="225" width="700" height="36" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <rect x="40" y="225" width="350" height="36" rx="6" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+    <text x="215" y="249" text-anchor="middle" font-weight="700" fill="#78350f">~100 maximum, aim well under</text>
+    <text x="565" y="249" text-anchor="middle" font-weight="700" fill="#92400e">batch where possible</text>
+    <text x="40" y="280" font-size="11" font-style="italic" fill="#64748b">Each callout adds latency. The agent's time budget shrinks fast.</text>
+
+    <text x="40" y="320" font-size="14" font-weight="700" fill="#0f172a">SOQL queries per transaction</text>
+    <rect x="40" y="335" width="700" height="36" rx="6" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+    <rect x="40" y="335" width="200" height="36" rx="6" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="140" y="359" text-anchor="middle" font-weight="700" fill="#172554">100 hard limit</text>
+    <text x="490" y="359" text-anchor="middle" font-weight="700" fill="#1e40af">aim for under 20 in an action</text>
+    <text x="40" y="390" font-size="11" font-style="italic" fill="#64748b">Bulkify, cache. Same governor limit as any other Apex transaction.</text>
+
+    <text x="40" y="430" font-size="14" font-weight="700" fill="#0f172a">DML statements per transaction</text>
+    <rect x="40" y="445" width="700" height="36" rx="6" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+    <rect x="40" y="445" width="150" height="36" rx="6" fill="#c4b5fd" stroke="#6d28d9" stroke-width="2"/>
+    <text x="115" y="469" text-anchor="middle" font-weight="700" fill="#3b0764">150 hard limit</text>
+    <text x="465" y="469" text-anchor="middle" font-weight="700" fill="#5b21b6">aim for one bulk DML per object</text>
+    <text x="40" y="500" font-size="11" font-style="italic" fill="#64748b">Mixed-DML rules apply. The same logic that bites you in triggers bites you in agent actions.</text>
+  </g>
+
+  <!-- Bottom rule -->
+  <g filter="url(#ds-gl)">
+    <rect x="40" y="525" width="920" height="60" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="60" y="550" font-size="13" font-weight="700" fill="#fff">Design rule</text>
+  <text x="60" y="572" font-size="12" fill="#cbd5e1">If an action might exceed any budget, split it. Either chain a queueable, return early with a "started" status, or break it into multiple actions the agent invokes in sequence.</text>
+</svg>

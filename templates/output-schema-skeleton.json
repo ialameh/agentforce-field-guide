@@ -1,0 +1,11 @@
+{
+  "unevaluatedProperties": false,
+  "properties": {
+    "<output1>": {
+      "title": "<Output Label>",
+      "description": "<What this output means>",
+      "lightning:type": "lightning__textType"
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

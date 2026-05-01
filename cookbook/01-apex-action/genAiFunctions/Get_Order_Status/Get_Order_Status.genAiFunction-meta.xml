@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns the status, expected ship date, and tracking URL for an order id.</description>
+    <developerName>Get_Order_Status</developerName>
+    <invocationTarget>GetOrderStatus</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Order_Status</localDeveloperName>
+    <masterLabel>Get Order Status</masterLabel>
+    <progressIndicatorMessage>Looking up your order</progressIndicatorMessage>
+</GenAiFunction>

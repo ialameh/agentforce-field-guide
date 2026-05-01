@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arr-cf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="ds-cf" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="560" fill="#ffffff"/>
+
+  <text x="500" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Where the Tokens Go</text>
+  <text x="500" y="56" font-size="13" text-anchor="middle" fill="#64748b">Each agent turn consumes tokens. Knowing the breakdown lets you cut cost without cutting capability.</text>
+
+  <!-- Diagram of token flow -->
+  <!-- User message -->
+  <g filter="url(#ds-cf)">
+    <rect x="60" y="100" width="180" height="60" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  </g>
+  <text x="150" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#78350f">User message</text>
+  <text x="150" y="143" font-size="11" text-anchor="middle" fill="#92400e">~50-300 tokens</text>
+
+  <line x1="240" y1="130" x2="280" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arr-cf)"/>
+
+  <!-- Context assembly -->
+  <g filter="url(#ds-cf)">
+    <rect x="280" y="80" width="200" height="100" rx="8" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+  <text x="380" y="105" font-size="13" font-weight="700" text-anchor="middle" fill="#172554">Context assembly</text>
+  <text x="380" y="125" font-size="11" text-anchor="middle" fill="#1e40af">System prompt</text>
+  <text x="380" y="141" font-size="11" text-anchor="middle" fill="#1e40af">Topic instructions</text>
+  <text x="380" y="157" font-size="11" text-anchor="middle" fill="#1e40af">Action descriptions</text>
+  <text x="380" y="173" font-size="11" text-anchor="middle" fill="#1e40af">Conversation history</text>
+
+  <line x1="480" y1="130" x2="520" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arr-cf)"/>
+
+  <!-- LLM -->
+  <g filter="url(#ds-cf)">
+    <rect x="520" y="80" width="200" height="100" rx="8" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+  </g>
+  <text x="620" y="115" font-size="13" font-weight="700" text-anchor="middle" fill="#831843">LLM call</text>
+  <text x="620" y="135" font-size="11" text-anchor="middle" fill="#9d174d">Reads input tokens</text>
+  <text x="620" y="151" font-size="11" text-anchor="middle" fill="#9d174d">Writes output tokens</text>
+  <text x="620" y="167" font-size="11" text-anchor="middle" fill="#9d174d">~2-5k typical input</text>
+
+  <line x1="720" y1="130" x2="760" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arr-cf)"/>
+
+  <!-- Reply -->
+  <g filter="url(#ds-cf)">
+    <rect x="760" y="100" width="180" height="60" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  </g>
+  <text x="850" y="125" font-size="13" font-weight="700" text-anchor="middle" fill="#14532d">Reply</text>
+  <text x="850" y="143" font-size="11" text-anchor="middle" fill="#166534">~50-500 output tokens</text>
+
+  <!-- Cost lever sections -->
+  <text x="500" y="220" font-size="16" font-weight="700" text-anchor="middle" fill="#0f172a">Where to cut cost</text>
+
+  <g font-size="12">
+    <!-- Lever 1 -->
+    <g filter="url(#ds-cf)">
+      <rect x="40" y="240" width="220" height="130" rx="8" fill="#f8fafc" stroke="#1d4ed8" stroke-width="1.5"/>
+    </g>
+    <text x="60" y="265" font-weight="700" fill="#172554">1. Action descriptions</text>
+    <text x="60" y="285" fill="#334155">Sent on every turn. Each description</text>
+    <text x="60" y="302" fill="#334155">that bloats wastes tokens.</text>
+    <text x="60" y="325" font-weight="600" fill="#1e40af">Action: keep under 200 chars.</text>
+    <text x="60" y="343" font-weight="600" fill="#1e40af">No marketing copy.</text>
+    <text x="60" y="361" font-weight="600" fill="#1e40af">No HTML or rich text.</text>
+
+    <!-- Lever 2 -->
+    <g filter="url(#ds-cf)">
+      <rect x="280" y="240" width="220" height="130" rx="8" fill="#f8fafc" stroke="#15803d" stroke-width="1.5"/>
+    </g>
+    <text x="300" y="265" font-weight="700" fill="#14532d">2. Conversation history</text>
+    <text x="300" y="285" fill="#334155">Grows turn by turn. Eventually fills</text>
+    <text x="300" y="302" fill="#334155">the context window.</text>
+    <text x="300" y="325" font-weight="600" fill="#15803d">Action: summarise old turns.</text>
+    <text x="300" y="343" font-weight="600" fill="#15803d">Drop irrelevant variables.</text>
+    <text x="300" y="361" font-weight="600" fill="#15803d">Reset on topic switch.</text>
+
+    <!-- Lever 3 -->
+    <g filter="url(#ds-cf)">
+      <rect x="520" y="240" width="220" height="130" rx="8" fill="#f8fafc" stroke="#be185d" stroke-width="1.5"/>
+    </g>
+    <text x="540" y="265" font-weight="700" fill="#831843">3. Number of actions</text>
+    <text x="540" y="285" fill="#334155">Every action visible to a topic adds</text>
+    <text x="540" y="302" fill="#334155">to context size.</text>
+    <text x="540" y="325" font-weight="600" fill="#be185d">Action: scope actions per topic.</text>
+    <text x="540" y="343" font-weight="600" fill="#be185d">Use subagents to partition.</text>
+    <text x="540" y="361" font-weight="600" fill="#be185d">Drop unused actions.</text>
+
+    <!-- Lever 4 -->
+    <g filter="url(#ds-cf)">
+      <rect x="760" y="240" width="200" height="130" rx="8" fill="#f8fafc" stroke="#d97706" stroke-width="1.5"/>
+    </g>
+    <text x="780" y="265" font-weight="700" fill="#78350f">4. Output length</text>
+    <text x="780" y="285" fill="#334155">Long replies cost more.</text>
+    <text x="780" y="302" fill="#334155">Verbose responses lose</text>
+    <text x="780" y="319" fill="#334155">user attention too.</text>
+    <text x="780" y="345" font-weight="600" fill="#d97706">Action: instruct brevity.</text>
+    <text x="780" y="363" font-weight="600" fill="#d97706">Set max length per topic.</text>
+  </g>
+
+  <!-- Caching -->
+  <g filter="url(#ds-cf)">
+    <rect x="40" y="395" width="920" height="65" rx="10" fill="#cffafe" stroke="#0e7490" stroke-width="1.5"/>
+  </g>
+  <text x="60" y="418" font-size="13" font-weight="700" fill="#164e63">Caching opportunities</text>
+  <text x="60" y="438" font-size="11" fill="#155e75">Cache deterministic action outputs in custom storage. If the same input ran 5 minutes ago, return cached result instead of invoking again.</text>
+  <text x="60" y="453" font-size="11" fill="#155e75">Most platforms charge per token. Salesforce charges per Einstein Request consumed. Cache hits skip the LLM call entirely. Big saving.</text>
+
+  <!-- Bottom rule -->
+  <g filter="url(#ds-cf)">
+    <rect x="40" y="480" width="920" height="60" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="60" y="505" font-size="13" font-weight="700" fill="#ffffff">Cost mantra</text>
+  <text x="60" y="527" font-size="12" fill="#cbd5e1">Be terse with the LLM, expand for the user. Every word in your action description costs money on every turn.</text>
+</svg>

@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arr-cv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="ds-cv" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="1100" height="620" fill="#ffffff"/>
+
+  <text x="550" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Conversation Design Patterns</text>
+  <text x="550" y="56" font-size="13" text-anchor="middle" fill="#64748b">Four common shapes. Pick the smallest one that handles your use case.</text>
+
+  <!-- Pattern 1: Single topic -->
+  <g filter="url(#ds-cv)">
+    <rect x="40" y="100" width="240" height="220" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  </g>
+  <text x="160" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#14532d">Single topic</text>
+  <text x="160" y="148" font-size="11" font-style="italic" text-anchor="middle" fill="#166534">Simplest. Use first.</text>
+
+  <circle cx="160" cy="190" r="32" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+  <text x="160" y="195" font-size="11" font-weight="700" text-anchor="middle" fill="#14532d">Topic</text>
+
+  <line x1="160" y1="222" x2="160" y2="244" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+
+  <rect x="100" y="246" width="50" height="22" rx="4" fill="#fff" stroke="#15803d" stroke-width="1.5"/>
+  <text x="125" y="262" font-size="10" text-anchor="middle" fill="#14532d">act 1</text>
+  <rect x="160" y="246" width="50" height="22" rx="4" fill="#fff" stroke="#15803d" stroke-width="1.5"/>
+  <text x="185" y="262" font-size="10" text-anchor="middle" fill="#14532d">act 2</text>
+
+  <text x="160" y="295" font-size="11" text-anchor="middle" fill="#166534">Linear flow, one persona,</text>
+  <text x="160" y="310" font-size="11" text-anchor="middle" fill="#166534">few actions.</text>
+
+  <!-- Pattern 2: Multiple topics -->
+  <g filter="url(#ds-cv)">
+    <rect x="300" y="100" width="240" height="220" rx="10" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2"/>
+  </g>
+  <text x="420" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#172554">Multiple topics</text>
+  <text x="420" y="148" font-size="11" font-style="italic" text-anchor="middle" fill="#1e40af">LLM routes between them</text>
+
+  <circle cx="360" cy="200" r="28" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="360" y="205" font-size="10" font-weight="700" text-anchor="middle" fill="#172554">FAQ</text>
+
+  <circle cx="420" cy="200" r="28" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="420" y="205" font-size="10" font-weight="700" text-anchor="middle" fill="#172554">Order</text>
+
+  <circle cx="480" cy="200" r="28" fill="#93c5fd" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="480" y="205" font-size="10" font-weight="700" text-anchor="middle" fill="#172554">Refund</text>
+
+  <line x1="360" y1="228" x2="360" y2="250" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+  <line x1="420" y1="228" x2="420" y2="250" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+  <line x1="480" y1="228" x2="480" y2="250" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+
+  <rect x="345" y="252" width="30" height="20" rx="3" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+  <rect x="405" y="252" width="30" height="20" rx="3" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+  <rect x="465" y="252" width="30" height="20" rx="3" fill="#fff" stroke="#1d4ed8" stroke-width="1.5"/>
+
+  <text x="420" y="295" font-size="11" text-anchor="middle" fill="#1e40af">Multiple intents in one</text>
+  <text x="420" y="310" font-size="11" text-anchor="middle" fill="#1e40af">agent. Same persona.</text>
+
+  <!-- Pattern 3: Subagent handoff -->
+  <g filter="url(#ds-cv)">
+    <rect x="560" y="100" width="240" height="220" rx="10" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+  </g>
+  <text x="680" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#3b0764">Subagent handoff</text>
+  <text x="680" y="148" font-size="11" font-style="italic" text-anchor="middle" fill="#5b21b6">Route to specialist</text>
+
+  <circle cx="680" cy="190" r="32" fill="#c4b5fd" stroke="#6d28d9" stroke-width="2"/>
+  <text x="680" y="195" font-size="10" font-weight="700" text-anchor="middle" fill="#3b0764">Router</text>
+
+  <line x1="680" y1="222" x2="615" y2="252" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+  <line x1="680" y1="222" x2="745" y2="252" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+
+  <circle cx="610" cy="270" r="22" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/>
+  <text x="610" y="274" font-size="9" font-weight="700" text-anchor="middle" fill="#fff">Sales</text>
+
+  <circle cx="750" cy="270" r="22" fill="#a78bfa" stroke="#6d28d9" stroke-width="2"/>
+  <text x="750" y="274" font-size="9" font-weight="700" text-anchor="middle" fill="#fff">Support</text>
+
+  <text x="680" y="310" font-size="11" text-anchor="middle" fill="#5b21b6">Different personas,</text>
+  <text x="680" y="324" font-size="11" text-anchor="middle" fill="#5b21b6">different scope of actions.</text>
+
+  <!-- Pattern 4: Gated flow -->
+  <g filter="url(#ds-cv)">
+    <rect x="820" y="100" width="240" height="220" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  </g>
+  <text x="940" y="130" font-size="14" font-weight="700" text-anchor="middle" fill="#78350f">Gated flow</text>
+  <text x="940" y="148" font-size="11" font-style="italic" text-anchor="middle" fill="#92400e">Auth or precondition first</text>
+
+  <rect x="900" y="170" width="80" height="32" rx="4" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+  <text x="940" y="190" font-size="10" font-weight="700" text-anchor="middle" fill="#78350f">Auth gate</text>
+
+  <line x1="940" y1="202" x2="940" y2="226" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-cv)"/>
+  <text x="950" y="218" font-size="9" fill="#dc2626">if pass</text>
+
+  <circle cx="940" cy="252" r="22" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+  <text x="940" y="256" font-size="9" font-weight="700" text-anchor="middle" fill="#78350f">Topic</text>
+
+  <text x="940" y="295" font-size="11" text-anchor="middle" fill="#92400e">Pre-action checks block the</text>
+  <text x="940" y="310" font-size="11" text-anchor="middle" fill="#92400e">conversation flow.</text>
+
+  <!-- When to use what -->
+  <text x="550" y="370" font-size="16" font-weight="700" text-anchor="middle" fill="#0f172a">Picking a pattern</text>
+
+  <g font-size="12">
+    <g filter="url(#ds-cv)">
+      <rect x="40" y="395" width="240" height="100" rx="8" fill="#f8fafc" stroke="#15803d" stroke-width="1.5"/>
+    </g>
+    <text x="60" y="418" font-weight="700" fill="#14532d">Single topic when</text>
+    <text x="60" y="438" fill="#334155">- One job to do</text>
+    <text x="60" y="455" fill="#334155">- Same persona throughout</text>
+    <text x="60" y="472" fill="#334155">- Less than 5 actions</text>
+    <text x="60" y="488" fill="#334155">- Linear conversation flow</text>
+
+    <g filter="url(#ds-cv)">
+      <rect x="300" y="395" width="240" height="100" rx="8" fill="#f8fafc" stroke="#1d4ed8" stroke-width="1.5"/>
+    </g>
+    <text x="320" y="418" font-weight="700" fill="#172554">Multiple topics when</text>
+    <text x="320" y="438" fill="#334155">- Several intents</text>
+    <text x="320" y="455" fill="#334155">- Each intent has 2-5 actions</text>
+    <text x="320" y="472" fill="#334155">- Same overall persona</text>
+    <text x="320" y="488" fill="#334155">- Topics are independent</text>
+
+    <g filter="url(#ds-cv)">
+      <rect x="560" y="395" width="240" height="100" rx="8" fill="#f8fafc" stroke="#6d28d9" stroke-width="1.5"/>
+    </g>
+    <text x="580" y="418" font-weight="700" fill="#3b0764">Subagent when</text>
+    <text x="580" y="438" fill="#334155">- Distinct personas</text>
+    <text x="580" y="455" fill="#334155">- Different audiences</text>
+    <text x="580" y="472" fill="#334155">- Clear handoff signals</text>
+    <text x="580" y="488" fill="#334155">- Different action scopes</text>
+
+    <g filter="url(#ds-cv)">
+      <rect x="820" y="395" width="240" height="100" rx="8" fill="#f8fafc" stroke="#d97706" stroke-width="1.5"/>
+    </g>
+    <text x="840" y="418" font-weight="700" fill="#78350f">Gated flow when</text>
+    <text x="840" y="438" fill="#334155">- Authentication required</text>
+    <text x="840" y="455" fill="#334155">- Preconditions block work</text>
+    <text x="840" y="472" fill="#334155">- Compliance gate exists</text>
+    <text x="840" y="488" fill="#334155">- Reuses across topics</text>
+  </g>
+
+  <!-- Bottom rule -->
+  <g filter="url(#ds-cv)">
+    <rect x="40" y="520" width="1020" height="80" rx="10" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+  </g>
+  <text x="60" y="544" font-size="13" font-weight="700" fill="#ffffff">Anti-pattern</text>
+  <text x="60" y="565" font-size="12" fill="#cbd5e1">Five subagents for what could be five topics. Subagents are for personas and scope, not for organising actions.</text>
+  <text x="60" y="583" font-size="12" fill="#cbd5e1">If you cannot describe an agent's purpose in one sentence, you have two agents stuck together. Split them.</text>
+</svg>

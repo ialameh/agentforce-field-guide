@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arrow-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f172a"/>
+    </marker>
+    <filter id="soft-shadow-ar" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="920" height="460" fill="#ffffff"/>
+
+  <text x="460" y="34" font-size="22" font-weight="700" text-anchor="middle" fill="#0f172a">Two State Machines, Not One</text>
+  <text x="460" y="56" font-size="13" text-anchor="middle" fill="#64748b">Agentforce keeps authoring and runtime state separate. Activation is the only bridge.</text>
+
+  <!-- Left: Authoring -->
+  <g filter="url(#soft-shadow-ar)">
+    <rect x="40" y="100" width="360" height="280" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  </g>
+  <text x="220" y="135" font-size="18" font-weight="700" text-anchor="middle" fill="#78350f">Authoring State</text>
+  <text x="220" y="158" font-size="12" font-style="italic" text-anchor="middle" fill="#92400e">"the draft"</text>
+
+  <text x="60" y="195" font-size="13" font-weight="700" fill="#78350f">What</text>
+  <text x="60" y="215" font-size="12" fill="#92400e">What the Builder UI shows you.</text>
+
+  <text x="60" y="245" font-size="13" font-weight="700" fill="#78350f">Updated when</text>
+  <text x="60" y="265" font-size="12" fill="#92400e">You click Save in the Builder.</text>
+  <text x="60" y="281" font-size="12" fill="#92400e">You retrieve via SFDX.</text>
+
+  <text x="60" y="311" font-size="13" font-weight="700" fill="#78350f">Read by</text>
+  <text x="60" y="331" font-size="12" fill="#92400e">Builder simulation (sometimes).</text>
+  <text x="60" y="347" font-size="12" fill="#92400e">SFDX retrieve.</text>
+  <text x="60" y="363" font-size="12" fill="#92400e">Source control diffs.</text>
+
+  <!-- Activation arrow -->
+  <line x1="400" y1="240" x2="520" y2="240" stroke="#0f172a" stroke-width="3" marker-end="url(#arrow-ar)"/>
+  <g filter="url(#soft-shadow-ar)">
+    <rect x="408" y="252" width="104" height="28" rx="14" fill="#0f172a"/>
+  </g>
+  <text x="460" y="271" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">Activate</text>
+
+  <text x="460" y="225" font-size="11" font-style="italic" text-anchor="middle" fill="#475569">Manual.</text>
+  <text x="460" y="305" font-size="11" font-style="italic" text-anchor="middle" fill="#475569">Per environment.</text>
+
+  <!-- Right: Runtime -->
+  <g filter="url(#soft-shadow-ar)">
+    <rect x="520" y="100" width="360" height="280" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  </g>
+  <text x="700" y="135" font-size="18" font-weight="700" text-anchor="middle" fill="#14532d">Runtime State</text>
+  <text x="700" y="158" font-size="12" font-style="italic" text-anchor="middle" fill="#166534">"the active version"</text>
+
+  <text x="540" y="195" font-size="13" font-weight="700" fill="#14532d">What</text>
+  <text x="540" y="215" font-size="12" fill="#166534">What the runtime engine actually serves.</text>
+
+  <text x="540" y="245" font-size="13" font-weight="700" fill="#14532d">Updated when</text>
+  <text x="540" y="265" font-size="12" fill="#166534">You activate.</text>
+  <text x="540" y="281" font-size="12" fill="#166534">No other path.</text>
+
+  <text x="540" y="311" font-size="13" font-weight="700" fill="#14532d">Read by</text>
+  <text x="540" y="331" font-size="12" fill="#166534">Test mode.</text>
+  <text x="540" y="347" font-size="12" fill="#166534">Production conversations.</text>
+  <text x="540" y="363" font-size="12" fill="#166534">Direct REST invocation.</text>
+
+  <text x="460" y="420" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">A passing simulation does not mean the agent is ready.</text>
+  <text x="460" y="440" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">Trust the test.</text>
+</svg>
